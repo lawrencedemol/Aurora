@@ -23,6 +23,7 @@ public partial class GameStateParameterPicker : INotifyPropertyChanged {
 
     public GameStateParameterPicker() {
         InitializeComponent();
+        NumericEntry.CultureInfo = CultureInfo.InvariantCulture;
     }
 
     #region UI Properties
@@ -285,7 +286,7 @@ public partial class GameStateParameterPicker : INotifyPropertyChanged {
         if (!v.HasValue) return;
 
         MainListBox.SelectedItem = null; // Clear the selection on the list box (to emphasise to the user it is now irrelevant)
-        SelectedPath = new VariablePath(v.ToString()); // Set the selectedpath to be the value of this numeric stepper
+        SelectedPath = new VariablePath(v.Value.ToString(CultureInfo.InvariantCulture)); // Set the selectedpath to be the value of this numeric stepper
         NotifyChanged(nameof(SelectedPath));
     }
     #endregion
